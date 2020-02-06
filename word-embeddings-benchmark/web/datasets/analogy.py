@@ -108,7 +108,7 @@ def fetch_wordrep(subsample=None, rng=None):
                  wordnet_categories=wikipedia_categories)
 
 
-def fetch_google_analogy():
+def fetch_google_analogy(filepath=""):
     """
     Fetch Google dataset for testing both semantic and syntactic analogies.
 
@@ -132,8 +132,10 @@ def fetch_google_analogy():
 
     """
 
-    url = "https://www.dropbox.com/s/eujtyfb5zem1mim/EN-GOOGLE.txt?dl=1"
-    with open(_fetch_file(url, "analogy/EN-GOOGLE", verbose=0), "r") as f:
+    #url = "https://www.dropbox.com/s/eujtyfb5zem1mim/EN-GOOGLE.txt?dl=1"
+    #Changed by Johan to read file directly from hard disk
+    #with open(_fetch_file(url, "analogy/EN-GOOGLE", verbose=0), "r") as f:
+    with open(filepath) as f:
         L = f.read().splitlines()
 
     # Simple 4 word analogy questions with categories
