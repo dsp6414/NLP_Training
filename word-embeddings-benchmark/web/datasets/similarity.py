@@ -13,7 +13,7 @@ from sklearn.datasets.base import Bunch
 from .utils import _get_as_pd, _fetch_file
 
 
-def fetch_MTurk():
+def fetch_MTurk(filepath=""):
     """
     Fetch MTurk dataset for testing attributional similarity
 
@@ -36,13 +36,16 @@ def fetch_MTurk():
 
     Additionally scores were multiplied by factor of 2.
     """
-    data = _get_as_pd('https://www.dropbox.com/s/f1v4ve495mmd9pw/EN-TRUK.txt?dl=1',
-                      'similarity', header=None, sep=" ").values
+    # Modifed by Johan
+    # data = _get_as_pd('https://www.dropbox.com/s/f1v4ve495mmd9pw/EN-TRUK.txt?dl=1',
+                      # 'similarity', header=None, sep=" ").values
+    data = pd.read_csv(filepath, header=None, sep=" ").values
     return Bunch(X=data[:, 0:2].astype("object"),
                  y=2 * data[:, 2].astype(np.float))
 
 
-def fetch_MEN(which="all", form="natural"):
+# def fetch_MEN(which="all", form="natural"):
+def fetch_MEN(filepath):
     """
     Fetch MEN dataset for testing similarity and relatedness
 
@@ -72,28 +75,33 @@ def fetch_MEN(which="all", form="natural"):
     Turk via the CrowdFlower interface. The collection can be used to train and/or test computer algorithms
     implementing semantic similarity and relatedness measures.
     """
-    if which == "dev":
-        data = _get_as_pd('https://www.dropbox.com/s/c0hm5dd95xapenf/EN-MEN-LEM-DEV.txt?dl=1',
-                          'similarity', header=None, sep=" ")
-    elif which == "test":
-        data = _get_as_pd('https://www.dropbox.com/s/vdmqgvn65smm2ah/EN-MEN-LEM-TEST.txt?dl=1',
-                          'similarity/EN-MEN-LEM-TEST', header=None, sep=" ")
-    elif which == "all":
-        data = _get_as_pd('https://www.dropbox.com/s/b9rv8s7l32ni274/EN-MEN-LEM.txt?dl=1',
-                          'similarity', header=None, sep=" ")
-    else:
-        raise RuntimeError("Not recognized which parameter")
+    # Commented by Johan
+    # if which == "dev":
+        # data = _get_as_pd('https://www.dropbox.com/s/c0hm5dd95xapenf/EN-MEN-LEM-DEV.txt?dl=1',
+                          # 'similarity', header=None, sep=" ")
+    # elif which == "test":
+        # data = _get_as_pd('https://www.dropbox.com/s/vdmqgvn65smm2ah/EN-MEN-LEM-TEST.txt?dl=1',
+                          # 'similarity/EN-MEN-LEM-TEST', header=None, sep=" ")
+    # elif which == "all":
+        # data = _get_as_pd('https://www.dropbox.com/s/b9rv8s7l32ni274/EN-MEN-LEM.txt?dl=1',
+                          # 'similarity', header=None, sep=" ")
+    # else:
+        # raise RuntimeError("Not recognized which parameter")
 
-    if form == "natural":
-        # Remove last two chars from first two columns
-        data = data.apply(lambda x: [y if isinstance(y, float) else y[0:-2] for y in x])
-    elif form != "lem":
-        raise RuntimeError("Not recognized form argument")
-
+    # if form == "natural":
+        # # Remove last two chars from first two columns
+        # data = data.apply(lambda x: [y if isinstance(y, float) else y[0:-2] for y in x])
+    # elif form != "lem":
+        # raise RuntimeError("Not recognized form argument")
+    
+    data = pd.read_csv(filepath, header=None, sep=" ")
+    data = data.apply(lambda x: [y if isinstance(y, float) else y[0:-2] for y in x])
+    
     return Bunch(X=data.values[:, 0:2].astype("object"), y=data.values[:, 2:].astype(np.float) / 5.0)
 
 
-def fetch_WS353(which="all"):
+# def fetch_WS353(which="all"):
+def fetch_WS353(filepath):
     """
     Fetch WS353 dataset for testing attributional and
     relatedness similarity
@@ -120,25 +128,26 @@ def fetch_WS353(which="all"):
         'y': vector with scores,
         'sd': vector of std of scores if available (for set1 and set2)
     """
-    if which == "all":
-        data = _get_as_pd('https://www.dropbox.com/s/eqal5qj97ajaycz/EN-WS353.txt?dl=1',
-                          'similarity', header=0, sep="\t")
-    elif which == "relatedness":
-        data = _get_as_pd('https://www.dropbox.com/s/x94ob9zg0kj67xg/EN-WSR353.txt?dl=1',
-                          'similarity', header=None, sep="\t")
-    elif which == "similarity":
-        data = _get_as_pd('https://www.dropbox.com/s/ohbamierd2kt1kp/EN-WSS353.txt?dl=1',
-                          'similarity', header=None, sep="\t")
-    elif which == "set1":
-        data = _get_as_pd('https://www.dropbox.com/s/opj6uxzh5ov8gha/EN-WS353-SET1.txt?dl=1',
-                          'similarity', header=0, sep="\t")
-    elif which == "set2":
-        data = _get_as_pd('https://www.dropbox.com/s/w03734er70wyt5o/EN-WS353-SET2.txt?dl=1',
-                          'similarity', header=0, sep="\t")
-    else:
-        raise RuntimeError("Not recognized which parameter")
+    # if which == "all":
+        # data = _get_as_pd('https://www.dropbox.com/s/eqal5qj97ajaycz/EN-WS353.txt?dl=1',
+                          # 'similarity', header=0, sep="\t")
+    # elif which == "relatedness":
+        # data = _get_as_pd('https://www.dropbox.com/s/x94ob9zg0kj67xg/EN-WSR353.txt?dl=1',
+                          # 'similarity', header=None, sep="\t")
+    # elif which == "similarity":
+        # data = _get_as_pd('https://www.dropbox.com/s/ohbamierd2kt1kp/EN-WSS353.txt?dl=1',
+                          # 'similarity', header=None, sep="\t")
+    # elif which == "set1":
+        # data = _get_as_pd('https://www.dropbox.com/s/opj6uxzh5ov8gha/EN-WS353-SET1.txt?dl=1',
+                          # 'similarity', header=0, sep="\t")
+    # elif which == "set2":
+        # data = _get_as_pd('https://www.dropbox.com/s/w03734er70wyt5o/EN-WS353-SET2.txt?dl=1',
+                          # 'similarity', header=0, sep="\t")
+    # else:
+        # raise RuntimeError("Not recognized which parameter")
 
     # We basically select all the columns available
+    data = pd.read_csv(filepath)
     X = data.values[:, 0:2]
     y = data.values[:, 2].astype(np.float)
 
@@ -150,7 +159,7 @@ def fetch_WS353(which="all"):
         return Bunch(X=X.astype("object"), y=y)
 
 
-def fetch_RG65():
+def fetch_RG65(filepath):
     """
     Fetch Rubenstein and Goodenough dataset for testing attributional and
     relatedness similarity
@@ -171,14 +180,16 @@ def fetch_RG65():
     -----
     Scores were scaled by factor 10/4
     """
-    data = _get_as_pd('https://www.dropbox.com/s/chopke5zqly228d/EN-RG-65.txt?dl=1',
-                      'similarity', header=None, sep="\t").values
-
+    # data = _get_as_pd('https://www.dropbox.com/s/chopke5zqly228d/EN-RG-65.txt?dl=1',
+                      # 'similarity', header=None, sep="\t").values
+     
+    data = pd.read_csv(filepath, header=None, sep="\t").values
+    
     return Bunch(X=data[:, 0:2].astype("object"),
                  y=data[:, 2].astype(np.float) * 10.0 / 4.0)
 
 
-def fetch_RW():
+def fetch_RW(filepath):
     """
     Fetch Rare Words dataset for testing attributional similarity
 
@@ -204,14 +215,16 @@ def fetch_RW():
     frequencies above five, there are still many non-English words. To counter such problems,
     each word selected is required to have a non-zero number of synsets in WordNet(Miller, 1995).
     """
-    data = _get_as_pd('https://www.dropbox.com/s/xhimnr51kcla62k/EN-RW.txt?dl=1',
-                      'similarity', header=None, sep="\t").values
+    # data = _get_as_pd('https://www.dropbox.com/s/xhimnr51kcla62k/EN-RW.txt?dl=1',
+                      # 'similarity', header=None, sep="\t").values
+    data = pd.read_csv(filepath, header=None, sep="\t").values
+    
     return Bunch(X=data[:, 0:2].astype("object"),
                  y=data[:, 2].astype(np.float),
-                 sd=np.std(data[:, 3:].astype(np.float)))
+                 sd=np.std(data[:, 2:].astype(np.float)))
 
 
-def fetch_multilingual_SimLex999(which="EN"):
+def fetch_multilingual_SimLex999(filepath):
     """
     Fetch Multilingual SimLex999 dataset for testing attributional similarity
 
@@ -269,7 +282,7 @@ def fetch_multilingual_SimLex999(which="EN"):
     return Bunch(X=X.astype("object"), y=y, sd=sd)
 
 
-def fetch_SimLex999():
+def fetch_SimLex999(filepath):
     """
     Fetch SimLex999 dataset for testing attributional similarity
 
@@ -297,9 +310,11 @@ def fetch_SimLex999():
      difference - note that clothes are not similar to closets (different materials, function etc.),
      even though they are very much related: coast - shore 9.00 9.10, clothes - closet 1.96 8.00
     """
-    data = _get_as_pd('https://www.dropbox.com/s/0jpa1x8vpmk3ych/EN-SIM999.txt?dl=1',
-                      'similarity', sep="\t")
+    # data = _get_as_pd('https://www.dropbox.com/s/0jpa1x8vpmk3ych/EN-SIM999.txt?dl=1',
+                      # 'similarity', sep="\t")
 
+    data = pd.read_csv(filepath, sep="\t")
+    
     # We basically select all the columns available
     X = data[['word1', 'word2']].values
     y = data['SimLex999'].values
@@ -311,7 +326,7 @@ def fetch_SimLex999():
     return Bunch(X=X.astype("object"), y=y, sd=sd, conc=conc, POS=POS, assoc=assoc)
 
 
-def fetch_TR9856():
+def fetch_TR9856(filepath):
     """
     Fetch TR9856 dataset for testing multi-word term relatedness
 
@@ -330,11 +345,12 @@ def fetch_TR9856():
     Notes
     -----
     """
-    data = pd.read_csv(os.path.join(_fetch_file(
-        'https://www.research.ibm.com/haifa/dept/vst/files/IBM_Debater_(R)_TR9856.v2.zip',
-        'similarity', uncompress=True, verbose=0),
-        'IBM_Debater_(R)_TR9856.v0.2', 'TermRelatednessResults.csv'), encoding="iso-8859-1")
+    # data = pd.read_csv(os.path.join(_fetch_file(
+        # 'https://www.research.ibm.com/haifa/dept/vst/files/IBM_Debater_(R)_TR9856.v2.zip',
+        # 'similarity', uncompress=True, verbose=0),
+        # 'IBM_Debater_(R)_TR9856.v0.2', 'TermRelatednessResults.csv'), encoding="iso-8859-1")
 
+    data = pd.read_csv(filepath, encoding="iso-8859-1") 
     # We basically select all the columns available
     X = data[['term1', 'term2']].values
     y = data['score'].values

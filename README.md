@@ -11,10 +11,13 @@ ConceptNet NumberBatch: https://github.com/commonsense/conceptnet-numberbatch
 
 Similarity datasets:
 
-MTurk : 
-MEN :
+MTurk : Downloaded from word-embeddings-benchmark
+MEN : Downloaded from word-embeddings-benchmark
 WS353 : http://www.cs.technion.ac.il/~gabr/resources/data/wordsim353/
-RG65 : 
-RW : 
+RG65 : Downloaded from word-embeddings-benchmark
+RW : https://nlp.stanford.edu/~lmthang/morphoNLM/
+SimLex999 :https://fh295.github.io/simlex.html . Downloaded from word-embeddings-benchmark
+TR9856 :Downloaded from word-embeddings-benchmark
 
+Analogy datasets
 
