@@ -239,7 +239,7 @@ def fetch_msr_analogy(filepath=""):
 
 
 # TODO: rewrite to a more standarized version
-def fetch_semeval_2012_2(which="all", which_scoring="golden"):
+def fetch_semeval_2012_2(filepath, which="all", which_scoring="golden"):
     """
     Fetch dataset used for SEMEVAL 2012 task 2 competition
 
@@ -282,12 +282,14 @@ def fetch_semeval_2012_2(which="all", which_scoring="golden"):
     assert which in ['all', 'train', 'test']
     assert which_scoring in ['golden', 'platinium']
 
-    path = _fetch_file(url="https://www.dropbox.com/sh/aarqsfnumx3d8ds/AAB05Mu2HdypP0pudGrNjooaa?dl=1",
-                       data_dir="analogy",
-                       uncompress=True,
-                       move="EN-SEMVAL-2012-2/EN-SEMVAL-2012-2.zip",
-                       verbose=0)
+    # path = _fetch_file(url="https://www.dropbox.com/sh/aarqsfnumx3d8ds/AAB05Mu2HdypP0pudGrNjooaa?dl=1",
+                       # data_dir="analogy",
+                       # uncompress=True,
+                       # move="EN-SEMVAL-2012-2/EN-SEMVAL-2012-2.zip",
+                       # verbose=0)
 
+    path = filepath
+    
     train_files = set(glob.glob(os.path.join(path, "train*.txt"))) - \
                   set(glob.glob(os.path.join(path, "train*_meta.txt")))
     test_files = set(glob.glob(os.path.join(path, "test*.txt"))) - \

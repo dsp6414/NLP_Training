@@ -115,7 +115,7 @@ def evaluate_categorization(w, X, y, method="all", seed=None):
 
 
 
-def evaluate_on_semeval_2012_2(w):
+def evaluate_on_semeval_2012_2(filepath, which, which_scoring, w):
     """
     Simple method to score embedding using SimpleAnalogySolver
 
@@ -133,7 +133,7 @@ def evaluate_on_semeval_2012_2(w):
     if isinstance(w, dict):
         w = Embedding.from_dict(w)
 
-    data = fetch_semeval_2012_2()
+    data = fetch_semeval_2012_2(filepath, which, which_scoring)
     mean_vector = np.mean(w.vectors, axis=0, keepdims=True)
     categories = data.y.keys()
     results = defaultdict(list)
