@@ -17,7 +17,7 @@ from ..utils import standardize_string
 
 
 # def fetch_wordrep(subsample=None, rng=None):
-def fetch_wordrep(folder_path):
+def fetch_wordrep(folder_path, subsample=None, rng=None):
     """
     Fetch MSR WordRep dataset for testing both syntactic and semantic dataset
 
@@ -49,10 +49,10 @@ def fetch_wordrep(folder_path):
                        # verbose=0)
                        
     path = folder_path
-
-    wikipedia_dict = glob.glob(os.path.join(path, "Pairs_from_Wikipedia_and_Dictionary/*.txt"))
-    wordnet = glob.glob(os.path.join(path, "Pairs_from_WordNet/*.txt"))
-
+       
+    wikipedia_dict = glob.glob(path + "Pairs_from_Wikipedia_and_Dictionary/*.txt")
+    wordnet = glob.glob(path + "Pairs_from_WordNet/*.txt")
+    
     # This dataset is too big to calculate and store all word analogy quadruples
     word_pairs = []
     category = []

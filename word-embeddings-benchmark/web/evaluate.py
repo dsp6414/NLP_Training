@@ -223,7 +223,7 @@ def evaluate_analogy(w, X, y, method="add", k=None, category=None, batch_size=10
         return np.mean(y_pred == y)
 
 
-def evaluate_on_WordRep(w, max_pairs=1000, solver_kwargs={}):
+def evaluate_on_WordRep(folder_path, subsample, rng, w, max_pairs=1000, solver_kwargs={}):
     """
     Evaluate on WordRep dataset
 
@@ -248,7 +248,7 @@ def evaluate_on_WordRep(w, max_pairs=1000, solver_kwargs={}):
     if isinstance(w, dict):
         w = Embedding.from_dict(w)
 
-    data = fetch_wordrep()
+    data = fetch_wordrep(folder_path, subsample, rng)
     categories = set(data.category)
 
     accuracy = {}
