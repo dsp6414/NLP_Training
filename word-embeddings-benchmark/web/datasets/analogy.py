@@ -16,7 +16,8 @@ from .utils import _get_dataset_dir, _fetch_file, _change_list_to_np
 from ..utils import standardize_string
 
 
-def fetch_wordrep(subsample=None, rng=None):
+# def fetch_wordrep(subsample=None, rng=None):
+def fetch_wordrep(folder_path):
     """
     Fetch MSR WordRep dataset for testing both syntactic and semantic dataset
 
@@ -41,11 +42,13 @@ def fetch_wordrep(subsample=None, rng=None):
     why it returns word paris
 
     """
-    path = _fetch_file(url="https://www.dropbox.com/sh/5k78h9gllvc44vt/AAALLQq-Bge605OIMlmGBbNJa?dl=1",
-                       data_dir="analogy",
-                       uncompress=True,
-                       move="EN-WORDREP/EN-WORDREP.zip",
-                       verbose=0)
+    # path = _fetch_file(url="https://www.dropbox.com/sh/5k78h9gllvc44vt/AAALLQq-Bge605OIMlmGBbNJa?dl=1",
+                       # data_dir="analogy",
+                       # uncompress=True,
+                       # move="EN-WORDREP/EN-WORDREP.zip",
+                       # verbose=0)
+                       
+    path = folder_path
 
     wikipedia_dict = glob.glob(os.path.join(path, "Pairs_from_Wikipedia_and_Dictionary/*.txt"))
     wordnet = glob.glob(os.path.join(path, "Pairs_from_WordNet/*.txt"))
