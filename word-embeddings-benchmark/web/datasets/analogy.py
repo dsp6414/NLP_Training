@@ -172,7 +172,7 @@ def fetch_google_analogy(filepath=""):
 
 
 
-def fetch_msr_analogy():
+def fetch_msr_analogy(filepath=""):
     """
     Fetch MSR dataset for testing performance on syntactic analogies
 
@@ -198,8 +198,10 @@ def fetch_msr_analogy():
     We then systematically generated analogy questions by randomly matching each of the 100 words with 5 other words
     from the same category, and creating variants.
     """
-    url = "https://www.dropbox.com/s/ne0fib302jqbatw/EN-MSR.txt?dl=1"
-    with open(_fetch_file(url, "analogy/EN-MSR", verbose=0), "r") as f:
+    # url = "https://www.dropbox.com/s/ne0fib302jqbatw/EN-MSR.txt?dl=1"
+    
+    # with open(_fetch_file(url, "analogy/EN-MSR", verbose=0), "r") as f:
+    with open(filepath, "r") as f:
         L = f.read().splitlines()
 
     # Typical 4 words analogy questions

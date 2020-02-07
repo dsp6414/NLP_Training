@@ -1,2 +1,5 @@
 #Download Embeddings separately
 /Data/Embeddings
+
+#Demo note book to try experiments
+/Notebooks/NLP Trial.ipynb
