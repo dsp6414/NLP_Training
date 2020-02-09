@@ -1,0 +1,42 @@
+We have developed two Notebooks for each part of this assignment. They can be found in the notebooks folder.
+
+Assignment Part 1:
+The notebook for this section is Assignment 1 - Part 1.ipynb
+
+Steps: 
+Simply place the input file : microblog2011.txt in the same folder as this notebook and run all the cells 
+to get the output.
+
+The output files for this section can be found in the Output Files folder.
+
+-------------------------------------------------------------------------------------------------
+
+Assignment Part 2:
+The notebook for this section is Assignment 1 - Part 2.ipynb
+
+For this part you will need the following structure of folders
+
+Data
+    -Analogy
+    -Embeddings
+	-ConceptNet
+	-FastText
+	-GloVe
+	-GoogleNews
+	-HDC
+	-LexVec
+	-PDC
+    -Similarity
+Notebooks
+word-embeddings-benchmark
+
+
+Steps: 
+1. Create a Data folder and a Similarity folder within in it and place all the similarity datasets within it.
+2. Create an Analogy folder within the Data folder in and place all the analogy datasets within it.
+3. Create an Embeddings folder within the Data folder in and place all the embeddings within a folder for each
+embedding
+4. Place the word-embeddings-benchmark in the same format as shown above.
+4. Place the notebook Assignment 1 - Part 2.ipynb within a Notebooks folder and run the script
+
+ 
