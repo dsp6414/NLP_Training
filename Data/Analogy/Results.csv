@@ -1,0 +1,8 @@
+Dataset,Google Analogy,MSR,SEMEVAL 2012 Task 2
+Glove,65.1,51.4,16.91
+Fast Text,9.28,17.85,22.73
+LexVec,60.4,37.08,18.15
+ConceptNet,31.94,43.95,25.65
+GoogleNews,1.23,0.6,22.39
+PDC,38.1,26.53,18.71
+HDC,28.9,13.95,18.78
