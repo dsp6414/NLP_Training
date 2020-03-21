@@ -31,4 +31,14 @@ MSR : Available on this repo <br/>
 SEMEVAL 2012 Task 2 : Available on this repo <br/>
 
 
+Important references for Text classification with PyTorch
+https://www.analyticsvidhya.com/blog/2020/01/first-text-classification-in-pytorch/
+
+https://github.com/pchampio/sentence-entailment
+
+
+Description of Experiments file:
+
+Model Description
+LSTIM(Bidirectional, Number of Layers, Num of Hidden Nodes, Dropout rate)
 
